@@ -1,0 +1,68 @@
+body {
+    background: #2B1887;
+}
+
+/*Start LEVELS*/
+
+.empty {
+    background: #D9D9D9;
+}
+
+/* LOW LEVEL */
+.low {
+    background: #2D41A7;  
+}
+
+/* MDIUM LEVEL */
+.medium {
+    background-color: #ECB800;
+}
+
+/* High LEVEL */
+.high {
+    background: #E42C5F;
+}
+
+/*-------End LEVELS---------*/
+
+
+.list {
+    background: #D5CCFF;
+}
+
+.list h1 {
+    color: #2B1887;
+
+}
+
+.list .task {
+    background: #F4F2FF;
+}
+
+.list .task .date{
+    color: #F4F2FF;
+}
+
+.task .priority .priority-level{
+    padding-right: 24px;
+    padding-left: 12px;
+}
+
+.task .desc {
+    color: #2B1887;
+}
+
+@media (max-width: 640px) {
+    .list .task-desc{
+        text-align: center;
+    }
+    .task .desc {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 320px) {
+    .priority .priority-level{
+        display: none;
+    }
+}
