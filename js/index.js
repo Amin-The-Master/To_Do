@@ -1,3 +1,7 @@
+'use strict'
+
+let toDoTasks = [];
+let doneTasks = [];
 const addTaskForm = document.querySelector('.add-task-form');
 const taskname = document.querySelector('#taskName');
 const taskCorP = document.querySelector('#taskCorP');
@@ -19,8 +23,6 @@ close.addEventListener('click', function(e) {
     addTaskForm.classList.add('hidden')
 });
 
-let toDoTasks = [];
-
 const renderTask = function(taskItems){
     const easy = `
         <span class="priority-level ${taskItems.taskPriority} rounded-bl-3xl rounded-r ml-3 "></span>
@@ -40,7 +42,7 @@ const renderTask = function(taskItems){
         <span class="priority-level ${taskItems.taskPriority} rounded-bl-3xl rounded-r ml-3 "></span>
     `;
     return `
-        <div value="${taskItems.taskname}"  class="task hover:cursor-pointer hover:shadow-2xl hover:shadow-indigo-500 duration-200 rounded-md
+        <div id="${taskItems.taskname}"  class="task hover:cursor-pointer hover:shadow-2xl hover:shadow-indigo-500 duration-200 rounded-md
         my-3 p-3">
             <h2 class="font-sans pl-3 font-bold text-2xl">${taskItems.taskname}</h2>
             
@@ -98,13 +100,47 @@ addTaskForm.addEventListener('submit', function(e) {
     addTaskForm.classList.add('hidden');
 });
 
-if(localStorage.length > 0) {
-    toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
+toDolist.addEventListener('click',function(e) {
+    const data = e.target.closest('.task');
+    const data2 = toDoTasks.find(task => task.taskname === data.id);
+    const data3 = toDoTasks.findIndex(task => task.taskname === data.id);
     
+    if(!data) return;
+    console.log(data2)
+
+    toDoTasks.splice(data3,1);
+    toDolist.removeChild(data);
+    localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
+    doneList.insertAdjacentHTML('beforeend', renderTask(data2));
+});
+
+
+
+
+if(localStorage.key('toDoTasks')) {
+    toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
     toDolist.insertAdjacentHTML('beforeend', toDoTasks.map(task => 
         renderTask(task)
     ).join(" "));
-};
+}
+
+
+
+
+
+// toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
+// doneTasks = JSON.parse(localStorage.getItem('doneTasks'));
+    
+// toDolist.insertAdjacentHTML('beforeend', toDoTasks.map(task => 
+//     renderTask(task)
+// ).join(" "));
+
+// doneList.insertAdjacentHTML('beforeend', doneTasks.map(task => 
+//     renderTask(task)
+// ).join(" "));
+
+
+
 
 
 
