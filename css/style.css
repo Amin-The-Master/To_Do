@@ -30,9 +30,17 @@ body {
     background: #D5CCFF;
 }
 
-.list h1 {
+.list h1 , .add-task{
     color: #2B1887;
+}
 
+.list button:hover  {
+    background: #2B1887;
+}
+
+.list form button:hover  {
+    background: #2B1887;
+    color: #F4F2FF;
 }
 
 .list .task {
@@ -52,17 +60,29 @@ body {
     color: #2B1887;
 }
 
+/*  END    */
+
+.add-task-form {
+    position: absolute;
+    top: 60px;
+    margin-left: 10px;
+}
+
+
+
+@media (max-width: 425px) {
+    .add-task-form {
+        position: absolute;
+        top: 60px;
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 640px) {
     .list .task-desc{
         text-align: center;
     }
     .task .desc {
         margin-top: 30px;
-    }
-}
-
-@media (max-width: 320px) {
-    .priority .priority-level{
-        display: none;
     }
 }

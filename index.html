@@ -7,23 +7,107 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="lg:flex my-4 mx-auto mx-1 w-full p-12">
-        <div class="list flex-1 lg:w-fit mb-3 h-fit 
+<body class="relative">
+    <div class="to-do lg:flex my-4 mx-auto mx-1 w-full p-12">
+        <div class="list toDolist sm:flex-1 lg:w-fit mb-3 h-fit 
         p-6 rounded-2xl">
-            <div class="flex">
-                <div>
-                    <img class="w-fit" src="icons/list.svg" alt="list-icon">
-                </div>
-                <h1 class="font-sans font-bold text-3xl pl-3 py-auto">To-Do</h1>
+        
+        <form class="add-task-form hidden rounded bg-[#2C2C2C] text-[#F4F2FF] p-10">
+            <button class="close flex ml-auto w-10 text-white">
+                <img class="text-white" src="icons/close.svg" alt="close">
+            </button>
+            <div class="flex mt-3">
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Task:</h2>
+                <input id="taskName" class="font-sans lg:text-2xl ml-auto p-2 text-[#2B1887]" type="text">
             </div>
-            <div class="task rounded-md
+
+            <span class="err-task hidden block text-center mt-2 font-sans text-[#ef0c0c] sm:text-xl text-md text">Enter Task Name!</span>
+            <div class="flex mt-6">
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-md ml-auto">Client or Project:</h2>
+                <input id="taskCorP" class="font-sans ml-auto p-2 text-[#2B1887]" type="text">
+            </div>
+
+            <span class="err-cp hidden block text-center mt-2 font-sans text-[#ef0c0c] sm:text-xl text-md text">Enter The Client or Project</span>
+            
+            <div class="flex mt-6">
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Priority:</h2>
+                <select class="priority p-3 bg-[#2B1887]">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="flex mt-6">
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Level:</h2>
+                <select class="level p-3 bg-[#2B1887]">
+                    <option value="Easy">Easy</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+            <div class="flex mt-3">
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Day:</h2>
+                <select class="day-task ml-3 p-3 bg-[#2B1887]">
+                    <option value="None">None</option>
+                    <option value="Mon">Mon</option>
+                    <option value="Tue">Tue</option>
+                    <option value="Wed">Wed</option>
+                    <option value="Thu">Thu</option>
+                    <option value="Fri">Fri</option>
+                    <option value="Sat">Sat</option>
+                    <option value="Sun">Sun</option>
+                </select>
+            </div>
+
+            <button class="
+            submit 
+            flex 
+            duration-200 
+            font-sans
+            font-bold 
+            text-[#2B1887] 
+            text-2xl 
+            rounded 
+            hover:rounded 
+            bg-white 
+            mt-3 
+            mx-auto
+            p-3
+            hover:text-white 
+            hover:bg-[#2B1887]"> 
+                submit
+            </button>
+        </form>
+            <div class="sm:flex">
+                <div class="flex p-3">
+                    <div>
+                        <img class="w-fit" src="icons/list.svg" alt="list-icon">
+                    </div>
+                    <h1 class="font-sans font-bold sm:text-3xl text-2xl pl-3 py-auto">To-Do</h1>
+                </div>
+                
+                <div class="ml-auto">
+                    <button class="
+                     add-task 
+                     duration-200 
+                     font-sans
+                     font-bold 
+                     sm:text-3xl 
+                     text-2xl 
+                     rounded 
+                     hover:rounded 
+                     bg-white 
+                     p-3
+                     hover:text-white">Add Task</button>
+                </div>
+            </div>
+            <!-- <div class="task rounded-md
             my-3 p-3">
                 <h2 class="font-sans pl-3 font-bold text-2xl">Create wireframes</h2>
                 
                 <div class="task-desc m-3 pt-4 sm:flex">
 
-                    <!----------- Priority ------------->
+                    
                     <div class="priority medium-priority">
                         <span class="date medium p-3 rounded-xl font-sans text-lg font-bold">Fri</span>
                         
@@ -36,32 +120,11 @@
                        Walmart
                     </h4>
                 </div>
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Create Light and Dark mode</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-
-                    <!----------- Priority ------------->
-                    <div class="priority medium-priority">
-                        <span class="date medium p-3 rounded-xl font-sans text-lg font-bold">Wed</span>
-                        
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                       Coinbase 
-                    </h4>
-                </div>
-            </div>
-
+            </div> -->
+        
         </div>
 
-        <div class="list flex-1 lg:w-fit mb-3 h-fit lg:ml-3
+        <div class="doneList list sm:flex-1 lg:w-fit mb-3 h-fit lg:ml-3
         p-6 rounded-2xl">
             <div class="flex">
                 <div>
@@ -70,213 +133,9 @@
                 <h1 class="font-sans font-bold text-3xl pl-3 py-auto">Done</h1>
             </div>
 
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Wire up the new user flow</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-
-                    <!----------- Priority ------------->
-                    <div class="priority high-priority">
-                        <span class="date high p-3 rounded-xl font-sans text-lg font-bold">Mon</span>
-                        
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        PG 
-                    </h4>
-                </div>
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Create buttons states</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-
-                    <!----------- Priority ------------->
-                    <div class="priority high-priority">
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Digi 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Create to do list</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-
-                    <!----------- Priority ------------->
-                    <div class="priority low-priority">
-                        <span class="priority-level low rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level low rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Confetti 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Add T&Cs to CPG</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-
-                    <!----------- Priority ------------->
-                    <div class="priority medium-priority">
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        DocSign 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Organize design system</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority medium-priority">
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Carrier 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Wire up the flow for Project Green</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority low-priority">
-                        <span class="date low p-3 rounded-xl font-sans text-lg font-bold">Mon</span>
-                        <span class="priority-level low rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        PG 
-                    </h4>
-                </div>
-                
-            </div>
-
-
-
-
-
-
-             <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Create grid view of NFTs</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority low-priority">
-                        <span class="priority-level low rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level empty rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Digi 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Mobile swap & transactions view</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority medium-priority">
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level medium rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Jump 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">Nested variants fixes</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority high-priority">
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Carrier 
-                    </h4>
-                </div>
-                
-            </div>
-
-            <div class="task rounded-md
-            my-3 p-3">
-                <h2 class="font-sans pl-3 font-bold text-2xl">High fidelity for Mobile wires</h2>
-                
-                <div class="task-desc m-3 pt-4 sm:flex">
-                    
-                    <!----------- Priority ------------->
-                    <div class="priority high-priority">
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                        <span class="priority-level high rounded-bl-3xl rounded-r ml-3 "></span>
-                    </div>
-
-                    <h4 class="desc font-sans sm:ml-auto text-2xl">
-                        Walmart 
-                    </h4>
-                </div>
-                
-            </div>
+            
         </div>
     </div>
+    <script src="js/index.js"></script>
 </body>
 </html>
