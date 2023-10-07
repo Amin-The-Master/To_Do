@@ -75,6 +75,8 @@ body {
         position: absolute;
         top: 60px;
         margin-left: 0;
+        left: 5px;
+        right: 5px;
     }
 }
 

@@ -12,7 +12,7 @@
         <div class="list toDolist sm:flex-1 lg:w-fit mb-3 h-fit 
         md:p-6 p-3 rounded-2xl">
         
-        <form class="add-task-form hidden rounded bg-[#2C2C2C] text-[#F4F2FF] md:p-10 p-3">
+        <form class="add-task-form hidden rounded bg-[#2C2C2C] text-[#F4F2FF] lg:p-10 md:p-6 p-3">
             <button class="close flex ml-auto w-10 text-white">
                 <img class="text-white" src="icons/close.svg" alt="close">
             </button>
@@ -23,7 +23,7 @@
 
             <span class="err-task hidden block text-center mt-2 font-sans text-[#ef0c0c] sm:text-xl text-md text">Enter Task Name!</span>
             <div class="flex mt-6">
-                <h2 class="font-sans font-bold lg:text-3xl sm:text-md ml-auto">Client or Project:</h2>
+                <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl md:mr-3">Client or Project:</h2>
                 <input id="taskCorP" class="font-sans ml-auto p-2 text-[#2B1887]" type="text">
             </div>
 
@@ -31,7 +31,7 @@
             
             <div class="flex mt-6">
                 <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Priority:</h2>
-                <select class="priority p-3 bg-[#2B1887]">
+                <select class="priority ml-auto p-3 bg-[#2B1887]">
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
@@ -39,7 +39,7 @@
             </div>
             <div class="flex mt-6">
                 <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Level:</h2>
-                <select class="level p-3 bg-[#2B1887]">
+                <select class="level  ml-auto p-3 bg-[#2B1887]">
                     <option value="Easy">Easy</option>
                     <option value="Moderate">Moderate</option>
                     <option value="Hard">Hard</option>
@@ -47,7 +47,7 @@
             </div>
             <div class="flex mt-3">
                 <h2 class="font-sans font-bold lg:text-3xl sm:text-2xl">Day:</h2>
-                <select class="day-task ml-3 p-3 bg-[#2B1887]">
+                <select class="day-task ml-auto ml-3 p-3 bg-[#2B1887]">
                     <option value="None">None</option>
                     <option value="Mon">Mon</option>
                     <option value="Tue">Tue</option>
@@ -133,7 +133,7 @@
                 <h1 class="font-sans font-bold text-3xl pl-3 py-auto">Done</h1>
             </div>
 
-            
+
         </div>
     </div>
     <script src="js/index.js"></script>
