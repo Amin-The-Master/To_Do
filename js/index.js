@@ -76,7 +76,8 @@ addTaskForm.addEventListener('submit', function(e) {
         taskCorP: taskCorP.value,
         taskPriority: taskPriority.value,
         taskLevel: taskLevel.value,
-        taskDay: taskDay.value
+        taskDay: taskDay.value,
+        taskType: 'to-do'
     }
     
     if(taskItems.taskname === "") {
@@ -93,6 +94,7 @@ addTaskForm.addEventListener('submit', function(e) {
 
     if(taskItems.taskname === "" || taskItems.taskCorP === '') return;
 
+    taskItems.taskType = 'To-do'
     toDolist.insertAdjacentHTML('beforeend', renderTask(taskItems));
     toDoTasks.push(taskItems);
     localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
@@ -102,11 +104,18 @@ addTaskForm.addEventListener('submit', function(e) {
 
 toDolist.addEventListener('click',function(e) {
     const data = e.target.closest('.task');
+    if(!data) return;
     const data2 = toDoTasks.find(task => task.taskname === data.id);
     const data3 = toDoTasks.findIndex(task => task.taskname === data.id);
+    data2.taskType = 'done';
     
-    if(!data) return;
     console.log(data2)
+
+    if(data2.taskType === 'done') {
+        doneTasks.push(data2);
+        localStorage.setItem('done',JSON.stringify(doneTasks));
+    };
+    
 
     toDoTasks.splice(data3,1);
     toDolist.removeChild(data);
@@ -114,12 +123,27 @@ toDolist.addEventListener('click',function(e) {
     doneList.insertAdjacentHTML('beforeend', renderTask(data2));
 });
 
+doneList.addEventListener('click',function(e) {
+    const data = e.target.closest('.task');
+    if(!data) return;
+    const data2 = doneTasks.findIndex(task => task.taskname === data.id);
+    doneTasks.splice(data2,1);
+    doneList.removeChild(data);
+    localStorage.setItem('done',JSON.stringify(doneTasks));
+});
 
 
 
 if(localStorage.key('toDoTasks')) {
     toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
     toDolist.insertAdjacentHTML('beforeend', toDoTasks.map(task => 
+        renderTask(task)
+    ).join(" "));
+}
+
+if(localStorage.key('done')) {
+    doneTasks = JSON.parse(localStorage.getItem('done'));
+    doneList.insertAdjacentHTML('beforeend', doneTasks.map(task => 
         renderTask(task)
     ).join(" "));
 }
