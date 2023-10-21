@@ -2,6 +2,12 @@
 
 let toDoTasks = [];
 let doneTasks = [];
+
+if(localStorage.length === 0) {
+    localStorage.setItem('done',JSON.stringify(doneTasks));
+    localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
+}
+
 const addTaskForm = document.querySelector('.add-task-form');
 const taskname = document.querySelector('#taskName');
 const taskCorP = document.querySelector('#taskCorP');
@@ -44,8 +50,27 @@ const renderTask = function(taskItems){
     return `
         <div id="${taskItems.taskname}"  class="task hover:cursor-pointer hover:shadow-2xl hover:shadow-indigo-500 duration-200 rounded-md
         my-3 p-3">
-            <h2 class="font-sans pl-3 font-bold text-2xl">${taskItems.taskname}</h2>
-            
+            <div class="flex">
+                <h2 class="font-sans pl-3 font-bold text-2xl">${taskItems.taskname}</h2>
+                <button class="close-task hidden ml-auto">
+                    <img class="w-fit" src="../icons/delete.svg" alt="delete">
+                </button>
+                <button class="
+                edit-task 
+                duration-200 
+                font-sans
+                font-bold 
+                sm:text-3xl 
+                text-2xl 
+                rounded 
+                hover:rounded 
+                hover:text-white 
+                p-3
+                hidden 
+                ml-auto">
+                    Edit
+                </button>
+            </div>
             <div class="task-desc m-3 pt-4 sm:flex">
 
                 <!----------- Priority ------------->
@@ -69,7 +94,6 @@ const renderTask = function(taskItems){
 }
 
 addTaskForm.addEventListener('submit', function(e) {
-    e.preventDefault();
     
     const taskItems = {
         taskname: taskname.value,
@@ -98,41 +122,29 @@ addTaskForm.addEventListener('submit', function(e) {
     toDolist.insertAdjacentHTML('beforeend', renderTask(taskItems));
     toDoTasks.push(taskItems);
     localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
-    console.log(toDoTasks);
     addTaskForm.classList.add('hidden');
 });
 
+
 toDolist.addEventListener('click',function(e) {
+    if(e.target.closest('.edit-task')) return;
     const data = e.target.closest('.task');
     if(!data) return;
     const data2 = toDoTasks.find(task => task.taskname === data.id);
     const data3 = toDoTasks.findIndex(task => task.taskname === data.id);
     data2.taskType = 'done';
-    
     console.log(data2)
 
     if(data2.taskType === 'done') {
         doneTasks.push(data2);
         localStorage.setItem('done',JSON.stringify(doneTasks));
     };
-    
-
     toDoTasks.splice(data3,1);
     toDolist.removeChild(data);
     localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
     doneList.insertAdjacentHTML('beforeend', renderTask(data2));
+    location.reload();
 });
-
-doneList.addEventListener('click',function(e) {
-    const data = e.target.closest('.task');
-    if(!data) return;
-    const data2 = doneTasks.findIndex(task => task.taskname === data.id);
-    doneTasks.splice(data2,1);
-    doneList.removeChild(data);
-    localStorage.setItem('done',JSON.stringify(doneTasks));
-});
-
-
 
 if(localStorage.key('toDoTasks')) {
     toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
@@ -148,20 +160,29 @@ if(localStorage.key('done')) {
     ).join(" "));
 }
 
+const closeBtns = doneList.querySelectorAll('.close-task');
+closeBtns.forEach(btn => btn.classList.remove('hidden'))
+closeBtns.forEach(btn => 
+    btn.addEventListener('click',function(e){
+    const data = e.target.closest('.task');
+    const data2 = doneTasks.find(task => data.id === task.taskname);
+    doneTasks.splice(data2,1);
+    doneList.removeChild(data);
+    localStorage.setItem('done', JSON.stringify(doneTasks));
+    console.log(data2)
+}));
 
+const editBtns = toDolist.querySelectorAll('.edit-task');
+editBtns.forEach(btn => btn.classList.remove('hidden'));
+editBtns.forEach(btn => btn.addEventListener('click',function(e){
+    const data = e.target.closest('.task');
+    const data2 = toDoTasks.find(task => data.id === task.taskname);
+    addTaskForm.classList.remove('hidden');
+    close.classList.add('hidden');
+    toDoTasks.splice(data2,1);
+    toDolist.removeChild(data);
+}))
 
-
-
-// toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
-// doneTasks = JSON.parse(localStorage.getItem('doneTasks'));
-    
-// toDolist.insertAdjacentHTML('beforeend', toDoTasks.map(task => 
-//     renderTask(task)
-// ).join(" "));
-
-// doneList.insertAdjacentHTML('beforeend', doneTasks.map(task => 
-//     renderTask(task)
-// ).join(" "));
 
 
 

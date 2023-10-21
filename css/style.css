@@ -60,6 +60,10 @@ body {
     color: #2B1887;
 }
 
+.task .close-task:hover {
+    background: none;
+}
+
 /*  END    */
 
 .add-task-form {
