@@ -94,7 +94,7 @@ const renderTask = function(taskItems){
 }
 
 addTaskForm.addEventListener('submit', function(e) {
-    
+    e.preventDefault();
     const taskItems = {
         taskname: taskname.value,
         taskCorP: taskCorP.value,
@@ -123,6 +123,9 @@ addTaskForm.addEventListener('submit', function(e) {
     toDoTasks.push(taskItems);
     localStorage.setItem('toDoTasks',JSON.stringify(toDoTasks));
     addTaskForm.classList.add('hidden');
+    if(taskname.value.length > 0 && taskCorP.value.length > 0) {
+        location.reload()
+    };
 });
 
 
@@ -183,7 +186,6 @@ editBtns.forEach(btn => btn.addEventListener('click',function(e){
     addTaskForm.addEventListener('submit', function(e){
         e.preventDefault();
         if(taskname.value.length > 0 && taskCorP.value.length > 0) {
-            location.reload()
             toDolist.removeChild(data);
         };
     })
