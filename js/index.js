@@ -180,7 +180,13 @@ editBtns.forEach(btn => btn.addEventListener('click',function(e){
     addTaskForm.classList.remove('hidden');
     close.classList.add('hidden');
     toDoTasks.splice(data2,1);
-    toDolist.removeChild(data);
+    addTaskForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(taskname.value.length > 0 && taskCorP.value.length > 0) {
+            location.reload()
+            toDolist.removeChild(data);
+        };
+    })
 }))
 
 
