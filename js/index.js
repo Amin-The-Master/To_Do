@@ -66,9 +66,9 @@ class toDoListAPP {
         this.addTaskForm.classList.remove('hidden');
         this.toDoTasks.splice(data2,1);
         this.addTaskForm.addEventListener('submit', function(e){
-            e.preventDefault();
             if(taskname.value.length > 0 && taskCorP.value.length > 0) {
                 toDolist.removeChild(data);
+                location.reload();
             };
         }.bind(this));
         }.bind(this)))
