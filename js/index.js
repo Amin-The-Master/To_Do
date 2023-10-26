@@ -17,14 +17,14 @@ const taskDay = document.querySelector('.day-task');
 const addTask = document.querySelector('.add-task');
 const toDolist = document.querySelector('.toDolist');
 const doneList = document.querySelector('.doneList');
-const close = document.querySelector('.close');
+const closeForm = document.querySelector('.close');
 
 addTask.addEventListener('click', function(e) {
     e.preventDefault();
     addTaskForm.classList.remove('hidden');
 });
 
-close.addEventListener('click', function(e) {
+closeForm.addEventListener('click', function(e) {
     e.preventDefault();
     addTaskForm.classList.add('hidden')
 });
@@ -181,12 +181,19 @@ editBtns.forEach(btn => btn.addEventListener('click',function(e){
     const data = e.target.closest('.task');
     const data2 = toDoTasks.find(task => data.id === task.taskname);
     addTaskForm.classList.remove('hidden');
-    close.classList.add('hidden');
     toDoTasks.splice(data2,1);
-    addTaskForm.addEventListener('submit', function(e){
-        e.preventDefault();
+    taskname.value = data2.taskname;
+    taskCorP.value = data2.taskCorP;
+    taskLevel.value = data2.taskLevel;
+    taskPriority.value = data2.taskPriority;
+    taskDay.value = data2.taskDay;
+    closeForm.addEventListener('click', function(){
+        location.reload();
+    })
+    addTaskForm.addEventListener('submit', function(){
         if(taskname.value.length > 0 && taskCorP.value.length > 0) {
             toDolist.removeChild(data);
+            location.reload();
         };
     })
 }))
