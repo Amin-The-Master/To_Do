@@ -8,7 +8,7 @@ const taskDay = document.querySelector('.day-task');
 const addTask = document.querySelector('.add-task');
 const toDolist = document.querySelector('.toDolist');
 const doneList = document.querySelector('.doneList');
-const close = document.querySelector('.close');
+const closeForm = document.querySelector('.close');
 if(!localStorage.key('toDoTasks') && !localStorage.key('done')) {
     localStorage.setItem('toDoTasks',JSON.stringify([]));
     localStorage.setItem('done',JSON.stringify([]));
@@ -20,7 +20,7 @@ class toDoListAPP {
     addTaskForm = document.querySelector('.add-task-form');
     constructor (){
         addTask.addEventListener('click', this.showForm.bind(this));
-        close.addEventListener('click', this.hideForm.bind(this));
+        closeForm.addEventListener('click', this.hideForm.bind(this));
         this.addTaskForm.addEventListener('submit', this.addTaskFormSubmit.bind(this));
         if(localStorage.key('toDoTasks')) {
             this.toDoTasks = JSON.parse(localStorage.getItem('toDoTasks'));
@@ -55,8 +55,15 @@ class toDoListAPP {
         editBtns.forEach(btn => btn.addEventListener('click',function(e){
         const data = e.target.closest('.task');
         const data2 = this.toDoTasks.find(task => data.id === task.taskname);
+        taskname.value = data2.taskname;
+        taskCorP.value = data2.taskCorP;
+        taskLevel.value = data2.taskLevel;
+        taskPriority.value = data2.taskPriority;
+        taskDay.value = data2.taskDay;
+        closeForm.addEventListener('click', function(){
+            location.reload();
+        })
         this.addTaskForm.classList.remove('hidden');
-        close.classList.add('hidden');
         this.toDoTasks.splice(data2,1);
         this.addTaskForm.addEventListener('submit', function(e){
             e.preventDefault();
