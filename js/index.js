@@ -36,6 +36,8 @@ class toDoListAPP {
             ).join(" "));
         }
 
+        console.log(this.toDoTasks);
+
         toDolist.addEventListener('click',this.makeDone.bind(this));
 
         const closeBtns = doneList.querySelectorAll('.close-task');
@@ -43,7 +45,7 @@ class toDoListAPP {
         closeBtns.forEach(btn => 
         btn.addEventListener('click',function(e){
         const data = e.target.closest('.task');
-        const data2 = this.doneTasks.find(task => data.id === task.taskname);
+        const data2 = this.doneTasks.find(task => data.id === task.taskId);
         this.doneTasks.splice(data2,1);
         doneList.removeChild(data);
         localStorage.setItem('done', JSON.stringify(this.doneTasks));
@@ -54,7 +56,7 @@ class toDoListAPP {
         editBtns.forEach(btn => btn.classList.remove('hidden'));
         editBtns.forEach(btn => btn.addEventListener('click',function(e){
         const data = e.target.closest('.task');
-        const data2 = this.toDoTasks.find(task => data.id === task.taskname);
+        const data2 = this.toDoTasks.find(task => data.id === task.taskId);
         taskname.value = data2.taskname;
         taskCorP.value = data2.taskCorP;
         taskLevel.value = data2.taskLevel;
@@ -93,7 +95,7 @@ class toDoListAPP {
             <span class="priority-level ${taskItems.taskPriority} rounded-bl-3xl rounded-r ml-3 "></span>
         `;
         return `
-            <div id="${taskItems.taskname}"  class="task hover:cursor-pointer hover:shadow-2xl hover:shadow-indigo-500 duration-200 rounded-md
+            <div id="${taskItems.taskId}"  class="task hover:cursor-pointer hover:shadow-2xl hover:shadow-indigo-500 duration-200 rounded-md
             my-3 p-3">
                 <div class="flex">
                     <h2 class="font-sans pl-3 font-bold text-2xl">${taskItems.taskname}</h2>
@@ -141,6 +143,7 @@ class toDoListAPP {
     addTaskFormSubmit(e){
         e.preventDefault();
         const taskItems = {
+            taskId: String(Math.floor(Math.random() * 1369963)),
             taskname: taskname.value,
             taskCorP: taskCorP.value,
             taskPriority: taskPriority.value,
@@ -177,7 +180,7 @@ class toDoListAPP {
         if(e.target.closest('.edit-task')) return;
         const data = e.target.closest('.task');
         if(!data) return;
-        const data2 = this.toDoTasks.find(task => task.taskname === data.id);
+        const data2 = this.toDoTasks.find(task => task.taskId === data.id);
         console.log(data2)
         data2.taskType = 'done';
         console.log(data2)
